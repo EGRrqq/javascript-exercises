@@ -1,21 +1,18 @@
-// basic iteration, don't care about memory
-// - base cases
-// - loop
-// - return arr[num]
 // iteration with memo
+// - create memo obj
+// - if obj[key] return obj[key]
+// - else obj[key] = return value
 
-const fibonacci = function (num) {
-  if (num < 0) return "OOPS";
-  if (num === 0) return 0;
-  if (num === 1) return 1;
+const fibonacci = function (num, memo) {
+  if (parseInt(num) < 0) return "OOPS";
+  if (parseInt(num) === 0) return 0;
+  if (parseInt(num) === 1) return 1;
+  
+  memo = memo || {};
 
-  let arr = [0, 1];
+  if (memo[num]) return memo[num];
 
-  for (let i = arr.length; i <= num; i++) {
-    arr.push(arr[i - 2] + arr[i - 1]);
-  }
-
-  return arr[num];
+  return memo[num] = fibonacci(num - 2, memo) + fibonacci(num - 1, memo);
 };
 
 // Do not edit below this line
